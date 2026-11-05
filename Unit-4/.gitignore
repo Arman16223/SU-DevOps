@@ -1,0 +1,39 @@
+# Terraform state, cache, plans, and local variables
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!*.tfvars.example
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ansible local files
+inventory.ini
+*.retry
+.ansible/
+
+# SSH keys and credentials
+*.pem
+*.key
+library-aws-key
+library-aws-key.pub
+.env
+.env.*
+
+# Local databases and Python environments
+*.db
+*.sqlite3
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db

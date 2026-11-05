@@ -1,0 +1,49 @@
+# Python environments and generated files
+.venv/
+.venv-ci/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+inventory.ini
+
+# Terraform local data and plans
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!*.tfvars.example
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Generated archives and databases
+*.zip
+*.db
+*.sqlite3
+
+# Editors / OS / logs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
