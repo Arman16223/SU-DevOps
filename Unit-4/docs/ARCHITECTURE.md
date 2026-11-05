@@ -1,6 +1,6 @@
-﻿# Architecture Specification: Enterprise Smart Library Management Platform
+# Architecture Specification: Enterprise Smart Library Management Platform
 
-**Course Module:** Unit 4 â€“ Infrastructure Automation
+**Course Module:** Unit 4 – Infrastructure Automation
 **Student Name:** Arman
 **PRN:** 2125UMLM1097
 **Cloud Platform:** Amazon Web Services (AWS)
@@ -211,4 +211,4 @@ This architecture provides practical knowledge of cloud networking, infrastructu
 
 **Student Name:** Arman
 **PRN:** 2125UMLM1097
-**Module:** Unit 4 â€“ Infrastructure Automation
+**Module:** Unit 4 – Infrastructure Automation

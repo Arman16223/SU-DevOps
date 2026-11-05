@@ -1,7 +1,7 @@
-﻿# Laboratory Manual Walkthrough & Execution Runbook
+# Laboratory Manual Walkthrough & Execution Runbook
 ## Enterprise Smart Library Management Platform
 
-**Course:** Unit 4 â€“ Infrastructure Automation
+**Course:** Unit 4 – Infrastructure Automation
 **Student Name:** Arman
 **PRN:** 2125UMLM1097
 **Cloud Platform:** Amazon Web Services (AWS)
@@ -439,4 +439,4 @@ The project helps develop practical skills in Infrastructure as Code, configurat
 
 **Student Name:** Arman
 **PRN:** 2125UMLM1097
-**Course:** Unit 4 â€“ Infrastructure Automation
+**Course:** Unit 4 – Infrastructure Automation

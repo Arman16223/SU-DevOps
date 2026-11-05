@@ -1,4 +1,4 @@
-﻿"""
+"""
 Enterprise Smart Library Management Platform
 Unit 4: Infrastructure Automation Mini-Project
 Author: Arman (PRN: 2125UMLM1097)
@@ -11,7 +11,11 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # Determine database path from environment variable or default
-DB_PATH = os.environ.get("DATABASE_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "library.db"))
+DEFAULT_DB = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "library.db"
+)
+DB_PATH = os.environ.get("DATABASE_PATH", DEFAULT_DB)
+
 
 def get_db_connection():
     # Ensure directory for DB exists
@@ -21,6 +25,7 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
 
 def init_db():
     conn = get_db_connection()
@@ -43,11 +48,13 @@ def init_db():
     conn.commit()
     conn.close()
 
+
 # Initialize DB on module load
 try:
     init_db()
 except Exception as e:
     app.logger.error(f"Error initializing database: {e}")
+
 
 @app.route("/", methods=["GET"])
 def root():
@@ -57,12 +64,14 @@ def root():
         "status": "running"
     }), 200
 
+
 @app.route("/api/health", methods=["GET"])
 def health():
     """Health check endpoint for Docker, Nginx, and monitoring agents"""
     return jsonify({
         "status": "healthy"
     }), 200
+
 
 @app.route("/api/books", methods=["GET"])
 def get_books():
@@ -73,20 +82,29 @@ def get_books():
     rows = cursor.fetchall()
     conn.close()
 
-    books = [{"id": row["id"], "author": row["author"], "title": row["title"]} for row in rows]
+    books = [
+        {"id": row["id"], "author": row["author"], "title": row["title"]}
+        for row in rows
+    ]
     return jsonify(books), 200
+
 
 @app.route("/api/books/<int:book_id>", methods=["GET"])
 def get_book(book_id):
     """Retrieve a single book by ID"""
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, author, title FROM books WHERE id = ?", (book_id,))
+    cursor.execute(
+        "SELECT id, author, title FROM books WHERE id = ?", (book_id,)
+    )
     row = cursor.fetchone()
     conn.close()
     if row is None:
         return jsonify({"error": "Book not found"}), 404
-    return jsonify({"id": row["id"], "author": row["author"], "title": row["title"]}), 200
+    return jsonify({
+        "id": row["id"], "author": row["author"], "title": row["title"]
+    }), 200
+
 
 @app.route("/api/books", methods=["POST"])
 def add_book():
@@ -95,16 +113,21 @@ def add_book():
     title = data.get("title")
     author = data.get("author")
     if not title or not author:
-        return jsonify({"error": "Fields 'title' and 'author' are required"}), 400
+        return jsonify(
+            {"error": "Fields 'title' and 'author' are required"}
+        ), 400
 
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO books (title, author) VALUES (?, ?)", (title, author))
+    cursor.execute(
+        "INSERT INTO books (title, author) VALUES (?, ?)", (title, author)
+    )
     new_id = cursor.lastrowid
     conn.commit()
     conn.close()
 
     return jsonify({"id": new_id, "title": title, "author": author}), 201
+
 
 @app.route("/api/books/<int:book_id>", methods=["DELETE"])
 def delete_book(book_id):
@@ -118,6 +141,7 @@ def delete_book(book_id):
     if deleted == 0:
         return jsonify({"error": "Book not found"}), 404
     return jsonify({"message": f"Book {book_id} deleted successfully"}), 200
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

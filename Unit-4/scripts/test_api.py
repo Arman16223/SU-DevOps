@@ -9,10 +9,12 @@ import json
 import urllib.request
 import urllib.error
 
+
 def test_endpoint(url, expected_code=200):
     print(f"Testing GET {url} ...", end=" ")
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "TestClient/1.0"})
+        headers = {"User-Agent": "TestClient/1.0"}
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req) as resp:
             status = resp.status
             body = json.loads(resp.read().decode("utf-8"))
@@ -30,21 +32,22 @@ def test_endpoint(url, expected_code=200):
         print(f"[ERROR] ({e})")
         return False, None
 
+
 if __name__ == "__main__":
     host = sys.argv[1] if len(sys.argv) > 1 else "localhost"
     port = sys.argv[2] if len(sys.argv) > 2 else "80"
     base_url = f"http://{host}:{port}"
 
-    print(f"==================================================")
+    print("==================================================")
     print(f" Running Smart Library API Test Suite against {base_url}")
-    print(f"==================================================")
+    print("==================================================")
 
     s1, r1 = test_endpoint(f"{base_url}/")
     s2, r2 = test_endpoint(f"{base_url}/api/health")
     s3, r3 = test_endpoint(f"{base_url}/api/books")
 
     all_passed = s1 and s2 and s3
-    print(f"==================================================")
+    print("==================================================")
     if all_passed:
         print("ALL API TESTS COMPLETED SUCCESSFULLY!")
         sys.exit(0)

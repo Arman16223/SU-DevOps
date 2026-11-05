@@ -24,6 +24,7 @@ inventory.ini
 
 # Terraform local data and plans
 .terraform/
+.terraform.lock.hcl
 *.tfstate
 *.tfstate.*
 *.tfplan
@@ -36,8 +37,16 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
+# Cloud & AWS credentials
+.aws/
+*credentials*
+*secret*
+
 # Generated archives and databases
 *.zip
+*.tar.gz
+*.rar
+*.7z
 *.db
 *.sqlite3
 

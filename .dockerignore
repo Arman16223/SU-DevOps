@@ -20,6 +20,8 @@ htmlcov/
 *.tfvars
 inventory.ini
 *.log
+*.docx
+*.zip
 .vscode/
 .idea/
 .DS_Store

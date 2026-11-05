@@ -242,3 +242,9 @@ Terraform simplifies AWS resource provisioning through Infrastructure as Code, w
 The integration of Docker, Nginx, Python Flask, SQLite, and Amazon S3 provides practical knowledge of modern DevOps workflows.
 
 Through this project, important concepts such as cloud computing, infrastructure automation, configuration management, containerization, application deployment, and data backup can be understood and implemented.
+
+---
+
+**Student Name:** Arman  
+**PRN:** 2125UMLM1097  
+**Module:** Unit 4 – Infrastructure Automation
